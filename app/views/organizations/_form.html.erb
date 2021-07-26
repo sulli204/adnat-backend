@@ -1,0 +1,11 @@
+<%= form_with model: organization do |form| %>
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+    </div>
+    <div>
+        <%= form.label :hourlyRate %>
+        <%= form.number_field :hourly, step: :any %>
+    </div>
+    <%= form.submit "Submit" %>
+<%end%>

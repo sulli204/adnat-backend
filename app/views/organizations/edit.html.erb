@@ -1,0 +1,13 @@
+<h1>Edit Organization <%= @organization.name%></h1>
+
+<%= form_with model: [:user, @organization], local: true do |form| %>
+    <div>
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+    </div>
+    <div>
+        <%= form.label :hourly %>
+        <%= form.number_field :hourly, step: :any %>
+    </div>
+    <%= form.submit "Submit" %>
+<%end%>

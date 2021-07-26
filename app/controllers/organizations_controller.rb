@@ -6,6 +6,20 @@ class OrganizationsController < ApplicationController
         @organizations = Organization.all
     end
 
+    def edit
+        @organization = Organization.find(params[:id])
+    end
+
+    def update
+        @organization = Organization.find(params[:id])
+
+        if @organization.update(org_params)
+            redirect_to user_organizations_path
+        else 
+            render :edit
+        end
+    end
+
     def create
         organization = Organization.new(org_params)
         if organization.save
