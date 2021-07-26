@@ -1,0 +1,6 @@
+<% if current_user %>
+    <%= link_to "Adnat", user_organizations_path(current_user.id), :style=>'color:blue;font-weight:bold;font-size: 2em; margin: .67em 0' %>
+    <h3>You are logged in as <%= current_user.name %> | <%= link_to 'Logout', '/logout' %></h3>
+<% else %>
+    <h1 style="color:blue;font-weight:bold">Adnat</h1>
+<%end%>
