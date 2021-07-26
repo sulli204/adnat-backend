@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         )
         if user.save
             session[:user_id] = user.id
-            redirect_to user_organizations
+            redirect_to user_organizations_path(user.id)
         else
             redirect_to '/signup'
         end
