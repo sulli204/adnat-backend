@@ -1,9 +1,14 @@
 class OrganizationsController < ApplicationController
     def new
+        @organization = Organization.new
     end
     
     def index
         @organizations = Organization.all
+    end
+
+    def show
+        @organization = Organization.find(params[:id])
     end
 
     def edit
@@ -23,7 +28,7 @@ class OrganizationsController < ApplicationController
     def create
         organization = Organization.new(org_params)
         if organization.save
-            
+            redirect_to user_organizations_path
         else
             render :new
         end

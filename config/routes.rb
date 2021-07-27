@@ -8,6 +8,9 @@ Rails.application.routes.draw do
 
     get '/signup' => 'users#new'
 
+    post '/join/:user_id/:org_id' => 'users#join', as: 'join'
+    post '/leave/:user_id' => 'users#leave', as: 'leave'
+
     resources :users do 
         resources :organizations
     end

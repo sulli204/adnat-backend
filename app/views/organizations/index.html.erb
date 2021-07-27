@@ -1,9 +1,17 @@
 <h1>Organizations</h1>
+<%if current_user.organization_id == nil %>
+    <div>You are not currently in an organization. Please join or create your own.</div>
+    <ul>
+        <% @organizations.each do |organization| %>
+            <li>
+                <%= organization.name %> 
+                <%= link_to "Edit", edit_user_organization_path(current_user.id, organization) %>
+                <%= link_to "Join", join_path(current_user, organization.id), method: :post %>
+            </li>
+        <%end%>
+    </ul>
 
-<ul>
-    <% @organizations.each do |organization| %>
-        <li>
-            <%= organization.name %> <%= link_to "Edit", edit_user_organization_path(current_user.id, organization) %>
-        </li>
-    <%end%>
-</ul>
+    <%= link_to "Create and Join an Organization", new_user_organization_path %>
+<% end %>
+
+
