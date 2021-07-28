@@ -32,6 +32,7 @@ class ShiftsController < ApplicationController
     def create
         @shift = Shift.new(shift_params)
         if @shift.save
+            redirect_to user_organization_shifts_path
         else
             render :new
         end

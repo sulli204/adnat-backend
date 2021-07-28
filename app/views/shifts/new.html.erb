@@ -1,0 +1,41 @@
+<h3>New Shift</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Shift Date</th>
+            <th>Start Time</th>
+            <th>Finish Time</th>
+            <th>Break Length</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <%= form_with model: [:user, :organization, @shift ] do |form| %>
+                <td>
+                    <%= current_user.name %>
+                </td>
+                <td>
+                    <%= form.date_field :date %>
+                </td>
+                <td>
+                    <%= form.time_field :start %>
+                </td>
+                <td>
+                    <%= form.time_field :finish %>
+                </td>
+                <td>
+                    <%= form.number_field :break %>
+                </td>
+                <td>
+                    <%= form.hidden_field :user_id, value: current_user.id %>
+                </td>
+                <td>
+                    <%= form.submit "Create Shift" %>
+                </td>
+            <%end%>
+        </tr>
+    </tbody>
+</table>
+
