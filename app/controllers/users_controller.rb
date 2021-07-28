@@ -3,16 +3,19 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(name: params[:name],
+        @user = User.new(name: params[:name],
                         email: params[:email],
                         password: params[:password],
                         password_confirmation: params[:password_confirmation],
-                        organization_id: 0
+                        organization_id: nil
         )
-        if user.save
-            session[:user_id] = user.id
-            redirect_to user_organizations_path(user.id)
+
+        if @user.save
+            puts "user saved!!!!!"
+            session[:user_id] = @user.id
+            redirect_to user_organizations_path(@user.id)
         else
+            puts @user.inspect
             redirect_to '/signup'
         end
     end

@@ -1,4 +1,4 @@
-<h1><%= @organization.name %></h1>
-<%= link_to "View Shifts" %> 
+<h2><%= @organization.name %></h2>
+<%= link_to "View Shifts", user_organization_shifts_path(current_user.id, @organization)%> 
 <%= link_to "Edit", edit_user_organization_path(current_user.id, @organization) %>
 <%= link_to "Leave", leave_path(current_user.id), method: :post%>

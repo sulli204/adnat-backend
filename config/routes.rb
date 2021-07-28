@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     post '/leave/:user_id' => 'users#leave', as: 'leave'
 
     resources :users do 
-        resources :organizations
+        resources :organizations do
+            resources :shifts
+        end
     end
 end
