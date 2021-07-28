@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "table.css" %>
-<h2><%= organization.name ></h2>
+
 
 <h3>Shifts</h3>
 <table>
@@ -16,7 +16,16 @@
     </thead>
 
     <tbody>
-        <% @shifts.each do |shift| %>
-            
+        <% @beautified_shifts.each do |shift| %>
+            <tr>
+                <td><%= shift["name"] %></td>
+                <td><%= shift["date"] %></td>
+                <td><%= shift["start"] %></td>
+                <td><%= shift["finish"] %></td>
+                <td><%= shift["break"] %></td>
+                <td><%= shift["hours"] %></td>
+                <td><%= shift["shift_cost"] %></td>
+            </tr>
+        <% end %>
     </tbody>
 </table>
