@@ -28,7 +28,7 @@ class OrganizationsController < ApplicationController
     def create
         organization = Organization.new(org_params)
         if organization.save
-            redirect_to user_organizations_path
+            redirect_post(join_path(org_id: organization.id), options: {authenticity_token: :auto})
         else
             render :new
         end
