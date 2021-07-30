@@ -1,6 +1,12 @@
-<% if current_user %>
+<% if current_user && current_user.organization_id == nil %>
     <%= link_to "Adnat", 
         user_organizations_path(current_user.id), 
+        :style=>'color:blue;font-weight:bold;font-size: 2em; margin: .67em 0' %>
+
+    <h3>You are logged in as <%= current_user.name %> | <%= link_to 'Logout', '/logout' %></h3>
+<% elsif current_user && current_user.organization_id != nil %>
+<%= link_to "Adnat", 
+        user_organization_path(current_user.id, current_user.organization_id), 
         :style=>'color:blue;font-weight:bold;font-size: 2em; margin: .67em 0' %>
 
     <h3>You are logged in as <%= current_user.name %> | <%= link_to 'Logout', '/logout' %></h3>

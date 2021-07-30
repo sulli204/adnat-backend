@@ -19,7 +19,11 @@ class OrganizationsController < ApplicationController
         @organization = Organization.find(params[:id])
 
         if @organization.update(org_params)
-            redirect_to user_organizations_path
+            if current_user.organization_id == nil
+                redirect_to user_organizations_path
+            else
+                redirect_to user_organization_path(current_user.id, current_user.organization_id)
+            end
         else 
             render :edit
         end
