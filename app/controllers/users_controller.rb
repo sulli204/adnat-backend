@@ -43,6 +43,11 @@ class UsersController < ApplicationController
     def leave
         @user = User.find(params[:user_id])
         if @user.update_attribute(:organization_id, nil)
+            @shifts = Shift.where(user_id: @user.id)
+            puts @shifts.inspect
+            for shift in @shifts
+                shift.destroy
+            end
             redirect_to user_organizations_path
         end
     end
