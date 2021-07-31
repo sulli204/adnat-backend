@@ -12,6 +12,9 @@
 
   <body>
   <%= render "layouts/navbar"%>
+  <% if flash[:notice] %>
+    <h2 class="notice"><%= flash[:notice] %></h2>
+  <% end %>
     <%= yield %>
   </body>
 </html>

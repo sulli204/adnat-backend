@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     post '/login' => 'sessions#create'
     get '/logout' => 'sessions#destroy'
 
+    get '/forgot_password' => 'users#forgot_password'
+    patch '/forgot_password' => 'users#change_password'
+
     get '/signup' => 'users#new'
 
     post '/join/:user_id/:org_id' => 'users#join', as: 'join'

@@ -24,8 +24,8 @@
                 <td><%= shift["start"] %></td>
                 <td><%= shift["finish"] %></td>
                 <td><%= shift["break"] %></td>
-                <td><%= shift["hours"] %></td>
-                <td><%= shift["shift_cost"] %></td>
+                <td><%= number_with_precision(shift["hours"], :precision => 2).to_s %></td>
+                <td>$<%= number_with_precision(shift["shift_cost"], :precision => 2).to_s  %></td>
             </tr>
         <% end %>
     </tbody>

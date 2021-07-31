@@ -11,7 +11,6 @@ class UsersController < ApplicationController
         )
 
         if @user.save
-            puts "user saved!!!!!"
             session[:user_id] = @user.id
             redirect_to user_organizations_path(@user.id)
         else
@@ -52,6 +51,29 @@ class UsersController < ApplicationController
         end
     end
     
+    def change_password
+        begin
+            @user = User.find_by(email: params[:email])
+            if @user == nil
+                raise ActiveRecord::RecordNotFound
+            else
+                if params[:password] == params[:password_confirmation]
+                    digest = BCrypt::Password.create(params[:password])
+                    if @user.update_attribute(:password_digest, digest)
+                        redirect_to '/login', notice: "Password Successfully Changed!"
+                    end
+                end
+            end
+        rescue ActiveRecord::RecordNotFound
+            flash[:notice] = "No user with that email exists."
+            redirect_to '/forgot_password'
+        end
+
+    end
+
+    def forgot_password
+    end
+
     private
     def user_params
         params.require(:user).permit(:name, :email, :password_digest, :organization_id)

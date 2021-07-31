@@ -3,16 +3,29 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = User.find_by(email: params[:email])
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id
-            if user.organization_id.nil?
-                redirect_to user_organizations_path(user.id)
+        # user = User.find_by(email: params[:email])
+        # if user && user.authenticate(params[:password])
+        #     session[:user_id] = user.id
+        #     if user.organization_id.nil?
+        #         redirect_to user_organizations_path(user.id)
+        #     else
+        #         redirect_to user_organization_path(user.id, user.organization_id)
+        #     end
+        # else
+        #     redirect_to '/login', notice: "Incorrect email or password"
+        # end
+
+        @user = User.find_by(email: params[:email])
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
+            if @user.organization_id.nil?
+                render json: @user
             else
-                redirect_to user_organization_path(user.id, user.organization_id)
+                # redirect_to user_organization_path(user.id, user.organization_id)
+                render json: @user
             end
         else
-            redirect_to '/login'
+            puts "It did not work!!!!"
         end
     end
 

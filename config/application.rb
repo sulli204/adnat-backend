@@ -10,13 +10,19 @@ module AdnatBackend
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins 'http://localhost:3000'
+    #     resource '/signup',
+    #       methods: [:post],
+    #       headers: :any,
+    #       credentials: true
+    #     resource '/login',
+    #       methods: [:post],
+    #       headers: :any,
+    #       credentials: true
+    #     resource '*', headers: :any, methods:[:get, :options]
+    #   end
+    # end
   end
 end

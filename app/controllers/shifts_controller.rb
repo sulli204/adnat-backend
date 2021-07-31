@@ -17,8 +17,8 @@ class ShiftsController < ApplicationController
                                         "start" => shift.start.to_time.strftime("%I:%M%p").to_s,
                                         "finish" => shift.finish.to_time.strftime("%I:%M%p").to_s,
                                         "break" => shift.break,
-                                        "hours" => ((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600).to_s,
-                                        "shift_cost" => (((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600) * @organization.hourly).to_s
+                                        "hours" => ((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600),
+                                        "shift_cost" => (((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600) * @organization.hourly)
                                         }
                 i = i + 1
             end
