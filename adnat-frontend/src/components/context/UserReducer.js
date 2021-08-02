@@ -23,6 +23,12 @@ const reducer = (state, action) => {
                 organization_id: action.payload.organization_id
             };
 
+        case actionTypes.JOIN:
+            return {
+                ...state,
+                organization_id: action.payload.organization_id
+            }
+
         default:
             console.log(state, action);
     }

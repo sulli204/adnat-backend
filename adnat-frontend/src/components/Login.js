@@ -50,8 +50,9 @@ const Login = () => {
                         <label for="password">Password</label>
                     </div>
                     <button class="btn waves-effect waves-light">Submit</button>
+                    <button class="btn waves-effect waves-light"><Link to="/signup" style={{color:'white'}}>Sign Up</Link></button>
+                    <button class="btn waves-effect waves-light"><Link to="/signup" style={{color:'white'}}>Forgot Password</Link></button>
                 </form>
-                <button class="btn waves-effect waves-light"><Link to="/signup">Sign Up</Link></button>
             </div>
             
         </div>
