@@ -9,6 +9,7 @@ const reducer = (state, action) => {
                 ...state,
                 id: null,
                 name: "",
+                email: "",
                 organization_id: null
             };
 

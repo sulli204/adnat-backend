@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserContext from './context/UserContext';
 import actionTypes from './context/ActionTypes';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -32,7 +33,7 @@ const Login = () => {
     }
 
     if (redirect){
-        return <Redirect to="/organizations"/>;
+        return <Redirect to="/home"/>;
     }
 
     return (
@@ -50,7 +51,9 @@ const Login = () => {
                     </div>
                     <button class="btn waves-effect waves-light">Submit</button>
                 </form>
+                <button class="btn waves-effect waves-light"><Link to="/signup">Sign Up</Link></button>
             </div>
+            
         </div>
     )
 }

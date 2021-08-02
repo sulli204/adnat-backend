@@ -1,9 +1,11 @@
 import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Login from './components/Login';
-import Organizations from './components/Organizations';
+// import Organizations from './components/Organizations';
+import Landing from './components/Landing';
+import SignUp from './components/SignUp';
 
 import UserContext from './components/context/UserContext';
 import userState from './components/context/UserState';
@@ -12,17 +14,18 @@ import { useReducer } from 'react';
 
 function App() {
     return (
-        <UserContext.Provider value={useReducer(reducer, userState)}>
-            <div class="container">
-                <BrowserRouter>
+        <BrowserRouter>
+            <UserContext.Provider value={useReducer(reducer, userState)}>
+                <div class="container">
                     <div>
                         <Navbar />
-                        <Login />
-                        <Route exact path="/organizations" component={Organizations} />
+                        <Route exact path="/" component={Login} />
+                        <Route exact path="/signup" component={SignUp} />
+                        <Route exact path="/home" component={Landing} />
                     </div>
-                </BrowserRouter>
-            </div>
-        </UserContext.Provider>
+                </div>
+            </UserContext.Provider>
+        </BrowserRouter>
     );
 }
 
