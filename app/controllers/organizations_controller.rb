@@ -5,10 +5,12 @@ class OrganizationsController < ApplicationController
     
     def index
         @organizations = Organization.all
+        render json: @organizations
     end
 
     def show
         @organization = Organization.find(params[:id])
+        render json: @organization
     end
 
     def edit
@@ -19,10 +21,12 @@ class OrganizationsController < ApplicationController
         @organization = Organization.find(params[:id])
 
         if @organization.update(org_params)
+            puts current_user
             if current_user.organization_id == nil
-                redirect_to user_organizations_path
+                @organizations = Organization.all
+                render json: @organizations
             else
-                redirect_to user_organization_path(current_user.id, current_user.organization_id)
+                render json: @organization
             end
         else 
             render :edit

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
         if @user.save
             session[:user_id] = @user.id
-            redirect_to user_organizations_path(@user.id)
+            render json: @user
         else
             puts @user.inspect
             redirect_to '/signup'
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
         @organization = Organization.find(params[:org_id])
         
         if @user.update_attribute(:organization_id, @organization.id)
-            redirect_to user_organization_path(@user, @organization)
+            render json: @user
         end
     end
 
