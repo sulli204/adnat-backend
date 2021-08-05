@@ -1,7 +1,8 @@
 const actionTypes = {
     LOGOUT: 'logout',
     LOGIN: 'login',
-    JOIN: 'join'
+    JOIN: 'join',
+    LEAVE: 'leave'
 }
 
 export default actionTypes;

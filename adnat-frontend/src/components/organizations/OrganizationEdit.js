@@ -8,8 +8,8 @@ class OrganizationEdit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            place_name: '',
-            place_hourly: ''
+            place_name: this.props.org.name,
+            place_hourly: this.props.org.hourly
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +29,7 @@ class OrganizationEdit extends React.Component {
         // let instance = M.Modal.getInstance(this.Modal);
         // instance.open();
         // instance.close();
-        // instance.destroy();
+
     }
 
     handleChange(e) {
@@ -39,7 +39,6 @@ class OrganizationEdit extends React.Component {
     handleSubmit() {
         console.log(this.state.place_name);
         console.log(this.state.place_hourly);
-        let organization = this.props.org;
         let name = this.state.place_name;
         let hourly = this.state.place_hourly;
 
@@ -64,7 +63,7 @@ class OrganizationEdit extends React.Component {
                         <h4>Edit {this.props.org.name}</h4>
                         <form>
                             <div class="row">
-                                <input type="text" name="place_name" id="place_name" placeholder={this.props.name} onChange={this.handleChange} />
+                                <input type="text" name="place_name" id="place_name" placeholder={this.props.org.name} onChange={this.handleChange} />
                                 <label for="email">Name</label>
                             </div>
                             <div class="row">

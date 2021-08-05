@@ -29,6 +29,12 @@ const reducer = (state, action) => {
                 organization_id: action.payload.organization_id
             }
 
+        case actionTypes.LEAVE:
+            return{
+                ...state,
+                organization_id: null
+            }
+
         default:
             console.log(state, action);
     }

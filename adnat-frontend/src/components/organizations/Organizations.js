@@ -23,7 +23,7 @@ const Organizations = () => {
                     setEmployer(response.data)
                 })
         }
-    }, []);
+    }, [userState.organization_id, userState.id]);
 
     const join = async (org_id) => {
         console.log(org_id)
@@ -38,6 +38,16 @@ const Organizations = () => {
             });
     }
 
+    const leave = async (e) => {
+        e.preventDefault();
+        await axios.post("http://localhost:3000/leave/" + userState.id)
+        .then((response) => {
+            dispatch({
+                type: actionTypes.LEAVE
+            })
+        })
+    }
+
     const renderContent = () => {
         if (userState.organization_id == null) {
             return (
@@ -50,7 +60,7 @@ const Organizations = () => {
 
                                     <div>{org.name} at ${org.hourly}/hour
 
-                                        <OrganizationEdit org={org} user_id={userState.id}/>
+                                        <OrganizationEdit class="secondary-content" org={org} user_id={userState.id}/>
                                         <Link onClick={(e) => join(org.id)} class="secondary-content" style={{ paddingRight: "5px" }}>Join</Link>
                                     </div>
 
@@ -65,7 +75,7 @@ const Organizations = () => {
             return (
                 <div>
                     <h3>{employer.name}</h3>
-                    <button class="btn waves-effect waves-light">Leave</button>
+                    <button class="btn waves-effect waves-light" onClick={(e) => leave(e)}>Leave</button>
                     <button class="btn waves-effect waves-light"><Link to="/signup" style={{color:'white'}}>Edit</Link></button>
                     <button class="btn waves-effect waves-light"><Link to="/signup" style={{color:'white'}}>View Shifts</Link></button>
                 </div>

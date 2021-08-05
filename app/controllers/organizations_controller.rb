@@ -4,6 +4,7 @@ class OrganizationsController < ApplicationController
     end
     
     def index
+        puts current_user.inspect
         @organizations = Organization.all
         render json: @organizations
     end
@@ -21,7 +22,6 @@ class OrganizationsController < ApplicationController
         @organization = Organization.find(params[:id])
 
         if @organization.update(org_params)
-            puts current_user
             if current_user.organization_id == nil
                 @organizations = Organization.all
                 render json: @organizations
