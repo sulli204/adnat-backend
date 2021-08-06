@@ -15,7 +15,6 @@ const Organizations = () => {
             axios.get("http://localhost:3000/users/" + userState.id + "/organizations")
                 .then((response) => {
                     setOrganizations(response.data);
-                    console.log(organizations)
                 })
         }
         else {
@@ -24,20 +23,7 @@ const Organizations = () => {
                     setEmployer(response.data)
                 })
         }
-    }, [userState.organization_id]);
-
-    const join = async (org_id) => {
-        console.log(org_id)
-        await axios.post("http://localhost:3000/join/" + userState.id + "/" + org_id)
-            .then((response) => {
-                dispatch({
-                    type: actionTypes.JOIN,
-                    payload: {
-                        organization_id: org_id
-                    }
-                });
-            });
-    }
+    }, [userState.organization_id, userState.id]);
 
     const leave = async (e) => {
         e.preventDefault();
@@ -61,6 +47,7 @@ const Organizations = () => {
                             )
                         })}
                     </ul>
+                    <button class="btn waves-effect waves-light"><Link to="/create-organization" style={{color:'white'}}>Create and Join</Link></button>
                 </div>
             )
         }

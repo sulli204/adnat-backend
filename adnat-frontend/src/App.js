@@ -1,9 +1,9 @@
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Login from './components/Login';
-// import Organizations from './components/Organizations';
+import CreateOrganization from './components/organizations/CreateOrganization';
 import Landing from './components/Landing';
 import SignUp from './components/SignUp';
 
@@ -22,6 +22,7 @@ function App() {
                         <Route exact path="/" component={Login} />
                         <Route exact path="/signup" component={SignUp} />
                         <Route exact path="/home" component={Landing} />
+                        <Route exact path="/create-organization" component={CreateOrganization} />
                     </div>
                 </div>
             </UserContext.Provider>

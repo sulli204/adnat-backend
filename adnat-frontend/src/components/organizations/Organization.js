@@ -10,11 +10,8 @@ const Organization = (org) => {
     const [organization, setOrganization] = useState(org)
 
     useEffect(() => {}, [organization])
-
-    console.log(organization)
-
+    
     const join = async (org_id) => {
-        console.log(org_id)
         await axios.post("http://localhost:3000/join/" + userState.id + "/" + org_id)
             .then((response) => {
                 dispatch({

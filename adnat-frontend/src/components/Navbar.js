@@ -37,6 +37,7 @@ const Navbar = () => {
                 <div class="nav-wrapper">
                     <a class="brand-logo">Adnat</a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li style={{paddingRight: "25px"}}>{userState.name}</li>
                         <li><Link onClick={logout} to="/">Logout</Link></li>
                     </ul>
                 </div>

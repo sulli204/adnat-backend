@@ -1,4 +1,4 @@
-import React, { setState } from 'react'
+import React from 'react'
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import axios from 'axios';
@@ -14,7 +14,6 @@ class OrganizationEdit extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.editOrg = this.props.editOrg.bind(this)
-        console.log(this.props)
     }
 
     componentDidMount() {
