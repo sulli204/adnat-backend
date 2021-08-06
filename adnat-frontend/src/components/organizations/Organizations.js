@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import UserContext from '../context/UserContext'
 import { Link } from 'react-router-dom'
 import actionTypes from '../context/ActionTypes';
-import OrganizationEdit from './OrganizationEdit';
+import Organization from './Organization';
 
 const Organizations = () => {
     const [userState, dispatch] = useContext(UserContext);
@@ -15,6 +15,7 @@ const Organizations = () => {
             axios.get("http://localhost:3000/users/" + userState.id + "/organizations")
                 .then((response) => {
                     setOrganizations(response.data);
+                    console.log(organizations)
                 })
         }
         else {
@@ -23,7 +24,7 @@ const Organizations = () => {
                     setEmployer(response.data)
                 })
         }
-    }, [userState.organization_id, userState.id]);
+    }, [userState.organization_id]);
 
     const join = async (org_id) => {
         console.log(org_id)
@@ -56,15 +57,7 @@ const Organizations = () => {
                     <ul class="collection">
                         {organizations.map(org => {
                             return (
-                                <li class="collection-item" key={org.name}>
-
-                                    <div>{org.name} at ${org.hourly}/hour
-
-                                        <OrganizationEdit class="secondary-content" org={org} user_id={userState.id}/>
-                                        <Link onClick={(e) => join(org.id)} class="secondary-content" style={{ paddingRight: "5px" }}>Join</Link>
-                                    </div>
-
-                                </li>
+                                <Organization org={org}/>
                             )
                         })}
                     </ul>

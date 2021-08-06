@@ -13,6 +13,8 @@ class OrganizationEdit extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.editOrg = this.props.editOrg.bind(this)
+        console.log(this.props)
     }
 
     componentDidMount() {
@@ -36,27 +38,34 @@ class OrganizationEdit extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleSubmit() {
-        console.log(this.state.place_name);
-        console.log(this.state.place_hourly);
+    async handleSubmit() {
         let name = this.state.place_name;
         let hourly = this.state.place_hourly;
+        console.log(name)
+        console.log(hourly)
 
-        axios.patch("http://localhost:3000/users/" + this.props.user_id + "/organizations/" + this.props.org.id, {name, hourly})
+        let org2 = {
+            id: this.props.org.id,
+            name: name,
+            hourly: hourly
+        }
+
+        await axios.patch("http://localhost:3000/users/" + this.props.user_id + "/organizations/" + this.props.org.id, {name, hourly})
             .then((response) => {
-                console.log(response.data)
+                console.log(response.data);
+                this.props.editOrg(org2);
             });
     }
 
     render() {
         return (
             <div>
-                <a href="#!" class="secondary-content modal-trigger" data-target="modal1" style={{ paddingLeft: "5px" }}>Edit</a>
+                <a href="#!" class="secondary-content modal-trigger" data-target={this.props.org.id} style={{ paddingLeft: "5px" }}>Edit</a>
                 <div
                     ref={Modal => {
                         this.Modal = Modal;
                     }}
-                    id="modal1"
+                    id={this.props.org.id}
                     className="modal"
                 >
                     <div className="modal_content">

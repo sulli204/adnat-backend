@@ -20,9 +20,9 @@ class OrganizationsController < ApplicationController
 
     def update
         @organization = Organization.find(params[:id])
-
+        @user = User.find(params[:user_id])
         if @organization.update(org_params)
-            if current_user.organization_id == nil
+            if @user.organization_id == nil
                 @organizations = Organization.all
                 render json: @organizations
             else
