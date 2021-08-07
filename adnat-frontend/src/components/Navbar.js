@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react'
-import { Link, Redirect } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link, useHistory } from 'react-router-dom';
 import actionTypes from './context/ActionTypes';
 import UserContext from './context/UserContext'
 
 const Navbar = () => {
     const [userState, dispatch] = useContext(UserContext);
-    const [redirect, setRedirect] = useState(false)
+    const history = useHistory();
 
     let navbar;
     console.log(userState)
@@ -19,8 +19,11 @@ const Navbar = () => {
                 dispatch({
                     type: actionTypes.LOGOUT
                 })
+                if (response.status === 200) {
+                    history.push("/");
+                }
             })
-            .then(setRedirect(true))
+            
     }
 
     if (userState.id == null) {
