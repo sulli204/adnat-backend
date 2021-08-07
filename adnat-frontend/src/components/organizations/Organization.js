@@ -9,8 +9,8 @@ const Organization = (org) => {
     const [userState, dispatch] = useContext(UserContext)
     const [organization, setOrganization] = useState(org)
 
-    useEffect(() => {}, [organization])
-    
+    useEffect(() => { }, [organization])
+
     const join = async (org_id) => {
         await axios.post("http://localhost:3000/join/" + userState.id + "/" + org_id)
             .then((response) => {
@@ -24,21 +24,30 @@ const Organization = (org) => {
     }
 
     const editOrg = (org) => {
-        setOrganization({org});
-}
+        setOrganization({ org });
+    }
 
-return (
+    const leave = async (e) => {
+        e.preventDefault();
+        await axios.post("http://localhost:3000/leave/" + userState.id)
+            .then((response) => {
+                dispatch({
+                    type: actionTypes.LEAVE
+                })
+            })
+    }
 
-    <div>
-        <li class="collection-item" key={organization.org.name}>
-            <div>{organization.org.name} at ${organization.org.hourly}/hour
-                <OrganizationEdit class="secondary-content" editOrg={editOrg} org={organization.org} user_id={userState.id} />
-                <Link onClick={(e) => join(organization.org.id)} class="secondary-content" style={{ paddingRight: "5px" }}>Join</Link>
-            </div>
+    return (
+        <div>
+            <li class="collection-item" key={organization.org.name}>
+                <div>{organization.org.name} at ${organization.org.hourly}/hour
+                    <OrganizationEdit class="secondary-content" editOrg={editOrg} org={organization.org} user_id={userState.id} />
+                    <Link onClick={(e) => join(organization.org.id)} class="secondary-content" style={{ paddingRight: "5px" }}>Join</Link>
+                </div>
 
-        </li>
-    </div>
-);
+            </li>
+        </div>
+    );
 }
 
 export default Organization;

@@ -11,6 +11,8 @@ import UserContext from './components/context/UserContext';
 import userState from './components/context/UserState';
 import reducer from './components/context/UserReducer';
 import { useReducer } from 'react';
+import OrganizationHome from './components/organizations/OrganizationHome';
+import ShiftList from './components/shifts/ShiftList';
 
 function App() {
     return (
@@ -21,8 +23,10 @@ function App() {
                         <Navbar />
                         <Route exact path="/" component={Login} />
                         <Route exact path="/signup" component={SignUp} />
-                        <Route exact path="/home" component={Landing} />
+                        <Route exact path="/landing" component={Landing} />
                         <Route exact path="/create-organization" component={CreateOrganization} />
+                        <Route exact path="/organization-home" component={OrganizationHome} />
+                        <Route exact path="/shifts" component={ShiftList} />
                     </div>
                 </div>
             </UserContext.Provider>

@@ -7,7 +7,6 @@ class ShiftsController < ApplicationController
         @shifts = Shift.joins(:user).where(user: {organization_id: params[:organization_id]}).order('start DESC')
         @organization = Organization.find(params[:organization_id])
         @beautified_shifts = Array.new
-        # puts @shifts.inspect
         if @shifts
             i = 0
             for shift in @shifts
@@ -21,8 +20,9 @@ class ShiftsController < ApplicationController
                                         "shift_cost" => (((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600) * @organization.hourly)
                                         }
                 i = i + 1
-            end
+            end            
         end
+        render json: @beautified_shifts
     end
 
     def show
@@ -32,17 +32,27 @@ class ShiftsController < ApplicationController
     def create
         @shift = Shift.new(shift_params)
 
-        @shift_date = Date.strptime(params[:shift][:date], '%Y-%m-%d')
-        @start_time = Time.strptime(params[:shift][:start], '%H:%M')
-        @finish_time = Time.strptime(params[:shift][:finish], '%H:%M')
- 
-        @shift.start = DateTime.new(@shift_date.year, @shift_date.month, @shift_date.day, @start_time.hour, @start_time.min, @start_time.sec, @start_time.zone)
-        @shift.finish = DateTime.new(@shift_date.year, @shift_date.month, @shift_date.day, @finish_time.hour, @finish_time.min, @finish_time.sec, @finish_time.zone)
+
+        start_time = DateTime.strptime(params[:shift][:start], ' %Y-%m-%d %H:%M')
+        finish_time = DateTime.strptime(params[:shift][:finish], '%Y-%m-%d %H:%M')
+        
+        @organization = Organization.find(params[:organization_id])
+        @shift.start = start_time
+        @shift.finish = finish_time
 
         if @shift.save
-            redirect_to user_organization_shifts_path
+            @beautified_shift = {
+                                        "name" => User.find(@shift.user_id).name, 
+                                        "date" => @shift.start.to_date,
+                                        "start" => @shift.start.to_time.strftime("%I:%M%p").to_s,
+                                        "finish" => @shift.finish.to_time.strftime("%I:%M%p").to_s,
+                                        "break" => @shift.break,
+                                        "hours" => ((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600),
+                                        "shift_cost" => (((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600) * @organization.hourly)
+                                        }
+            render json: @beautified_shift
         else
-            render :new
+            puts "Shift did not save"
         end
     end
     private
