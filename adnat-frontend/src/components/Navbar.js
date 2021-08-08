@@ -30,7 +30,7 @@ const Navbar = () => {
         navbar =(
             <nav>
                 <div class="nav-wrapper">
-                    <a class="brand-logo">Adnat</a>
+                    <a class="brand-logo"><Link to="/">Adnat</Link></a>
                 </div>
             </nav>)
     }
@@ -38,9 +38,9 @@ const Navbar = () => {
         navbar =(
             <nav>
                 <div class="nav-wrapper">
-                    <a class="brand-logo">Adnat</a>
+                    <a class="brand-logo"><Link to="/landing">Adnat</Link></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li style={{paddingRight: "25px"}}>{userState.name}</li>
+                        <li style={{paddingRight: "5px"}}><Link to="/profile">{userState.name}</ Link></li>
                         <li><Link onClick={logout} to="/">Logout</Link></li>
                     </ul>
                 </div>

@@ -30,9 +30,17 @@ const reducer = (state, action) => {
             }
 
         case actionTypes.LEAVE:
-            return{
+            return {
                 ...state,
                 organization_id: null
+            }
+            
+        case actionTypes.UPDATE:
+            return {
+                ...state,
+                name: action.payload.name,
+                email:action.payload.email,
+                organization_id: action.payload.organization_id
             }
 
         default:

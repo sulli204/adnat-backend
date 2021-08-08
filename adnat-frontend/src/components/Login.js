@@ -54,7 +54,6 @@ const Login = () => {
                     <button class="btn waves-effect waves-light"><Link to="/signup" style={{color:'white'}}>Forgot Password</Link></button>
                 </form>
             </div>
-            
         </div>
     )
 }

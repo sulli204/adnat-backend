@@ -3,7 +3,6 @@ import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import axios from 'axios';
 
-
 class OrganizationEdit extends React.Component {
     constructor(props) {
         super(props);
@@ -26,11 +25,6 @@ class OrganizationEdit extends React.Component {
             endingTop: "10%"
         };
         M.Modal.init(this.Modal, options);
-        // If you want to work on instance of the Modal then you can use the below code snippet 
-        // let instance = M.Modal.getInstance(this.Modal);
-        // instance.open();
-        // instance.close();
-
     }
 
     handleChange(e) {
@@ -40,8 +34,6 @@ class OrganizationEdit extends React.Component {
     async handleSubmit() {
         let name = this.state.place_name;
         let hourly = this.state.place_hourly;
-        console.log(name)
-        console.log(hourly)
 
         let org2 = {
             id: this.props.org.id,

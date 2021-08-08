@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Shift from './Shift'
 
 const ShiftList = (props) => {
@@ -65,13 +66,14 @@ const ShiftList = (props) => {
                         <td><input type="time" value={finish} onChange={(e) => { setFinish(e.target.value) }} /></td>
                         <td><input type="number" min="0" value={breakTime} onChange={(e) => { setBreakTime(e.target.value) }} /></td>
                         <td>
-                            <button class="btn-floating btn-large waves-effect waves-light red" onClick={addShift}>
+                            <button class="btn-floating btn-medium waves-effect waves-light red" onClick={addShift}>
                                 <i class="material-icons">add</i>
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <button class="btn waves-effect waves-light"><Link to="/organization-home">Go Back</Link></button>
         </div>
     )
 }

@@ -12,7 +12,6 @@ const OrganizationList = () => {
         axios.get("http://localhost:3000/users/" + userState.id + "/organizations")
             .then((response) => {
                 setOrganizations(response.data);
-                console.log(organizations)
             })
     }, [userState.id]);
 

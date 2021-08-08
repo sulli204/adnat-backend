@@ -13,6 +13,8 @@ import reducer from './components/context/UserReducer';
 import { useReducer } from 'react';
 import OrganizationHome from './components/organizations/OrganizationHome';
 import ShiftList from './components/shifts/ShiftList';
+import Profile from './components/Profile';
+import ChangePassword from './components/ChangePassword';
 
 function App() {
     return (
@@ -27,6 +29,8 @@ function App() {
                         <Route exact path="/create-organization" component={CreateOrganization} />
                         <Route exact path="/organization-home" component={OrganizationHome} />
                         <Route exact path="/shifts" component={ShiftList} />
+                        <Route exact path="/profile" component={Profile} />
+                        <Route exact path="/change-password" component={ChangePassword}/>
                     </div>
                 </div>
             </UserContext.Provider>

@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update(user_params)
-            puts @user.inspect
+            render json: @user
         end
     end
 
@@ -60,13 +60,13 @@ class UsersController < ApplicationController
                 if params[:password] == params[:password_confirmation]
                     digest = BCrypt::Password.create(params[:password])
                     if @user.update_attribute(:password_digest, digest)
-                        redirect_to '/login', notice: "Password Successfully Changed!"
+                        render json: @user
                     end
                 end
             end
         rescue ActiveRecord::RecordNotFound
             flash[:notice] = "No user with that email exists."
-            redirect_to '/forgot_password'
+            puts "did not work"
         end
 
     end
