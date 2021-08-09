@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     post '/join/:user_id/:org_id' => 'users#join', as: 'join'
     post '/leave/:user_id' => 'users#leave', as: 'leave'
 
+    get '/users/:user_id/organizations/:organization_id/departed_shifts' => "shifts#get_departed"
+
     resources :users do 
         resources :organizations do
             resources :shifts

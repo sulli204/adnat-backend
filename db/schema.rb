@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_172420) do
+ActiveRecord::Schema.define(version: 2021_08_09_162552) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 2021_07_30_172420) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "departed", default: false
+    t.integer "organization_id", null: false
+    t.index ["organization_id"], name: "index_shifts_on_organization_id"
     t.index ["user_id"], name: "index_shifts_on_user_id"
   end
 
@@ -40,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_07_30_172420) do
     t.index ["organization_id"], name: "index_users_on_organization_id"
   end
 
+  add_foreign_key "shifts", "organizations"
   add_foreign_key "shifts", "users"
   add_foreign_key "users", "organizations"
 end
