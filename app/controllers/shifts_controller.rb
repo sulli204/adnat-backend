@@ -40,17 +40,17 @@ class ShiftsController < ApplicationController
 
         if @shift.save
             @beautified_shift = {
-                                        "name" => User.find(@shift.user_id).name, 
-                                        "date" => @shift.start.to_date,
-                                        "start" => @shift.start.to_time.strftime("%I:%M%p").to_s,
-                                        "finish" => @shift.finish.to_time.strftime("%I:%M%p").to_s,
-                                        "break" => @shift.break,
-                                        "hours" => ((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600),
-                                        "shift_cost" => (((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600) * @organization.hourly)
-                                        }
+                                    "name" => User.find(@shift.user_id).name, 
+                                    "date" => @shift.start.to_date,
+                                    "start" => @shift.start.to_time.strftime("%I:%M%p").to_s,
+                                    "finish" => @shift.finish.to_time.strftime("%I:%M%p").to_s,
+                                    "break" => @shift.break,
+                                    "hours" => ((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600),
+                                    "shift_cost" => (((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600) * @organization.hourly)
+                                    }
             render json: @beautified_shift
         else
-            puts "Shift did not save"
+            render json: {}, status: 422
         end
     end
 

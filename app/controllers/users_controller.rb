@@ -10,12 +10,11 @@ class UsersController < ApplicationController
                         organization_id: nil
         )
 
-        if @user.save
+        if @user.save!
             session[:user_id] = @user.id
             render json: @user
         else
-            puts @user.inspect
-            redirect_to '/signup'
+            render json: {}, status: 422
         end
     end
 
@@ -64,8 +63,7 @@ class UsersController < ApplicationController
                 end
             end
         rescue ActiveRecord::RecordNotFound
-            flash[:notice] = "No user with that email exists."
-            render json: {status: 404}
+            render json: {}, status: 404
         end
 
     end

@@ -9,11 +9,9 @@ class SessionsController < ApplicationController
             if @user.organization_id.nil?
                 render json: @user
             else
-                # redirect_to user_organization_path(user.id, user.organization_id)
                 render json: @user
             end
         else
-
             render json: {}, status: 401
         end
     end
