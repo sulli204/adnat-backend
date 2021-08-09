@@ -66,7 +66,7 @@ class UsersController < ApplicationController
             end
         rescue ActiveRecord::RecordNotFound
             flash[:notice] = "No user with that email exists."
-            puts "did not work"
+            render json: {status: 404}
         end
 
     end

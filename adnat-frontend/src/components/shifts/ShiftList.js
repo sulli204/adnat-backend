@@ -15,7 +15,6 @@ const ShiftList = (props) => {
         axios.get("http://localhost:3000/users/" + userState.id + "/organizations/" + userState.organization_id + "/shifts")
             .then((response) => {
                 setShifts(response.data);
-                console.log(shifts);
             });
     }, [userState.id, userState.organization_id])
 
@@ -73,7 +72,7 @@ const ShiftList = (props) => {
                     </tr>
                 </tbody>
             </table>
-            <button class="btn waves-effect waves-light"><Link to="/organization-home">Go Back</Link></button>
+            <button class="btn waves-effect waves-light white"><Link to="/organization-home">Go Back</Link></button>
         </div>
     )
 }

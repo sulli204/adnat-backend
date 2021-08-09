@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
                 render json: @user
             end
         else
-            puts "It did not work!!!!"
+
+            render json: {}, status: 401
         end
     end
 

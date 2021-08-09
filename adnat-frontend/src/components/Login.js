@@ -17,8 +17,8 @@ const Login = () => {
 
         await axios.post("http://localhost:3000/login", { email, password })
             .then((response) => {
+                console.log(response)
                 const data = response.data;
-
                 dispatch({
                     type: actionTypes.LOGIN,
                     payload: {
@@ -28,12 +28,19 @@ const Login = () => {
                         organization_id: data.organization_id
                     }
                 })
+                setRedirerct(true);
             })
-            .then(() => setRedirerct(true));
+            .catch(error => {
+                if (error.response.status === 401){
+                    alert("Incorrect Username or Password");
+                    setPassword("");
+                }
+            })
+
     }
 
-    if (redirect){
-        return <Redirect to="/landing"/>;
+    if (redirect) {
+        return <Redirect to="/landing" />;
     }
 
     return (
@@ -50,8 +57,8 @@ const Login = () => {
                         <label for="password">Password</label>
                     </div>
                     <button class="btn waves-effect waves-light">Submit</button>
-                    <button class="btn waves-effect waves-light"><Link to="/signup" style={{color:'white'}}>Sign Up</Link></button>
-                    <button class="btn waves-effect waves-light"><Link to="/signup" style={{color:'white'}}>Forgot Password</Link></button>
+                    <button class="btn waves-effect waves-light"><Link to="/signup" style={{ color: 'white' }}>Sign Up</Link></button>
+                    <button class="btn waves-effect waves-light"><Link to="/signup" style={{ color: 'white' }}>Forgot Password</Link></button>
                 </form>
             </div>
         </div>

@@ -11,9 +11,14 @@ const SignUp = () => {
     const [password_confirmation, setPasswordConfirmation] = useState('');
     const [userState, dispatch] = useContext(UserContext);
     const [redirect, setRedirect] = useState(false)
+    const [error, setError] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!samePassword()){
+            return;
+        }
 
         await axios.post('http://localhost:3000/users', {name, email, password, password_confirmation})
         .then((response) => {
@@ -30,6 +35,15 @@ const SignUp = () => {
             })
         })
         .then(() => setRedirect(true));
+    }
+
+    const samePassword = () =>{
+        if (password != password_confirmation) {
+            setError("* Passwords need to match")
+            setPasswordConfirmation("");
+            return false;
+        }
+        return true;
     }
 
     if (redirect) {
@@ -54,6 +68,7 @@ const SignUp = () => {
                         <label for="password">Password</label>
                     </div>
                     <div class="row">
+                        <div class="red-text">{error}</div>
                         <input type="password" name="password_confirmation" id="password_confirmation" value={password_confirmation} onChange={(e) => { setPasswordConfirmation(e.target.value) }} />
                         <label for="password">Password Confirmation</label>
                     </div>
