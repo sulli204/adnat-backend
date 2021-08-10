@@ -1,10 +1,12 @@
 import axios from "axios";
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
 import { useHistory } from "react-router";
+import UserContext from "./context/UserContext";
 
-const ChangePassword = (state) => {
-    let email = state.location.state.email;
+const ChangePassword = () => {
+    const [userState, dispatch] = useContext(UserContext);
 
+    const [email, setEmail] = useState(userState.email);
     const [password, setPassword] = useState("");
     const [password_confirmation, setPasswordConfirmation] = useState("");
     const history = useHistory();
@@ -12,14 +14,30 @@ const ChangePassword = (state) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password == password_confirmation){
-            await axios.patch("http://localhost:3000/forgot_password", {email, password, password_confirmation})
-            .then((response) => {
-                if (response.status === 200) {
-                    history.push("/profile");
-                    alert("Password Change Succesful!")
-                }
-            })
+        if (password == password_confirmation) {
+            await axios.patch("http://localhost:3000/forgot_password", { email, password, password_confirmation })
+                .then((response) => {
+                    if (response.status === 200) {
+                        if (userState.id != null) {
+                            history.push("/profile");
+                        }
+                        else {
+                            history.push("/");
+                        }
+                        alert("Password Change Succesful!");
+                    }
+                })
+                .catch((error) => {
+                    if (error.response.status === 404) {
+                        alert("Email does not exist");
+                        setPassword("");
+                        setPasswordConfirmation("");
+                    }
+                })
+        } else {
+            alert("Make sure passwords match!");
+            setPassword("");
+            setPasswordConfirmation("");
         }
     }
 
@@ -27,6 +45,12 @@ const ChangePassword = (state) => {
         <div>
             <h4>Change your password</h4>
             <form onSubmit={handleSubmit}>
+                {userState.id ? null :
+                    <div class="row">
+                        <input type="text" name="email" id="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                        <label for="password">Email</label>
+                    </div>
+                }
                 <div class="row">
                     <input type="password" name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                     <label for="password">Password (6 character minimum)</label>

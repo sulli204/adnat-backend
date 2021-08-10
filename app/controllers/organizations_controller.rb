@@ -4,7 +4,6 @@ class OrganizationsController < ApplicationController
     end
     
     def index
-        puts current_user.inspect
         @organizations = Organization.all
         render json: @organizations
     end

@@ -24,10 +24,10 @@ const Profile = () => {
                             email: email,
                             orangization_id: organization_id
                         }
-                    })
-                    alert("Profile Change Succesful!")
+                    });
+                    alert("Profile Change Succesful!");
                 }
-            })
+            });
     }
 
     return (
@@ -48,7 +48,6 @@ const Profile = () => {
 
             <button class="btn waves-effect waves-light red" style={{ paddingTop: "5 px" }}><Link to={{
                 pathname: "/change-password",
-                state: { email: userState.email }
             }}>Change Password</Link></button>
         </div>
     )

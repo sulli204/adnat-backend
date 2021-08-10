@@ -62,7 +62,7 @@ const Login = () => {
                     </div>
                     <button class="btn waves-effect waves-light">Submit</button>
                     <button class="btn waves-effect waves-light"><Link to="/signup" style={{ color: 'white' }}>Sign Up</Link></button>
-                    <button class="btn waves-effect waves-light"><Link to="/signup" style={{ color: 'white' }}>Forgot Password</Link></button>
+                    <button class="btn waves-effect waves-light"><Link to="/change-password" style={{ color: 'white' }}>Forgot Password</Link></button>
                 </form>
             </div>
         </div>
