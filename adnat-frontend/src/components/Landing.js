@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import UserContext from './context/UserContext';
-import OrganizationHome from './organizations/OrganizationHome';
 import OrganizationList from './organizations/OrganizationList';
 
 

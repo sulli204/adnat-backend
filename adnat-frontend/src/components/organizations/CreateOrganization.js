@@ -13,8 +13,6 @@ const CreateOrganization = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         let name = orgName;
-        console.log(orgName);
-        console.log(hourly);
 
         await axios.post("http://localhost:3000/users/" + userState.id + "/organizations", { name, hourly })
             .then((response) => {
@@ -33,10 +31,15 @@ const CreateOrganization = () => {
                         });
                 }
             })
+            .catch((error) => {
+                if (error.response.status === 422){
+                    alert(error.response.data.e_messages)
+                }
+            });
     }
 
     if (redirect){
-        return <Redirect to="/home"/>;
+        return <Redirect to="/landing"/>;
     }
 
     return (

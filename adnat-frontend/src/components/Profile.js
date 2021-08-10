@@ -1,7 +1,6 @@
 import { React, useContext, useState } from 'react';
 import UserContext from './context/UserContext';
 import actionTypes from './context/ActionTypes';
-import ChangePassword from './ChangePassword';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 

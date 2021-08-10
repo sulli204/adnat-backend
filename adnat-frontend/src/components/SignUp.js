@@ -38,7 +38,7 @@ const SignUp = () => {
     }
 
     const samePassword = () =>{
-        if (password != password_confirmation) {
+        if (password !== password_confirmation) {
             setError("* Passwords need to match")
             setPasswordConfirmation("");
             return false;
@@ -47,7 +47,7 @@ const SignUp = () => {
     }
 
     if (redirect) {
-        return <Redirect to="/home"/>;
+        return <Redirect to="/landing"/>;
     }
 
     return (

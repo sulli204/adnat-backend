@@ -1,7 +1,6 @@
 import actionTypes from "./ActionTypes";
 
 const reducer = (state, action) => {
-    console.log(action.type)
     switch (action.type) {
 
         case actionTypes.LOGOUT:

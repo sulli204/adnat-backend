@@ -14,7 +14,7 @@ const ChangePassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password == password_confirmation) {
+        if (password === password_confirmation) {
             await axios.patch("http://localhost:3000/forgot_password", { email, password, password_confirmation })
                 .then((response) => {
                     if (response.status === 200) {

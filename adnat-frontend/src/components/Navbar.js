@@ -7,7 +7,6 @@ import UserContext from './context/UserContext';
 const Navbar = () => {
     const [userState, dispatch] = useContext(UserContext);
     const history = useHistory();
-    console.log(userState)
 
     useEffect(() => {
         // if (localStorage.getItem("id") != null) {
@@ -45,7 +44,7 @@ const Navbar = () => {
         navbar =(
             <nav>
                 <div class="nav-wrapper">
-                    <a class="brand-logo"><Link to="/">Adnat</Link></a>
+                    <Link class="brand-logo" to="/">Adnat</Link>
                 </div>
             </nav>)
     }
@@ -53,7 +52,7 @@ const Navbar = () => {
         navbar =(
             <nav>
                 <div class="nav-wrapper">
-                    <a class="brand-logo"><Link to="/landing">Adnat</Link></a>
+                    <Link class="brand-logo" to="/landing">Adnat</Link>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li style={{paddingRight: "5px"}}><Link to="/profile">{userState.name}</ Link></li>
                         <li><Link onClick={logout} to="/">Logout</Link></li>

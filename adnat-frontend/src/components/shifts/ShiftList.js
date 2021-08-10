@@ -34,9 +34,18 @@ const ShiftList = (props) => {
             if (response.status === 200) {
                 let newShift = response.data;
                 let updatedArray = shifts.concat(newShift);
-                setShifts(updatedArray)
+                setShifts(updatedArray);
+                setDate("")
+                setStart("")
+                setFinish("")
+                setBreakTime("")
             }
-        });
+        })
+        .catch((error) => {
+            if (error.response.status === 422){
+                alert("Date and times must be present");
+            }
+        })
     }
 
     const getDeparted = async (e) => {
@@ -95,7 +104,7 @@ const ShiftList = (props) => {
                         </tr> : null}
                 </tbody>
             </table>
-            <button class="btn waves-effect waves-light white"><Link to="/organization-home">Go Back</Link></button>
+            <button class="btn waves-effect waves-light white"><Link to="/organization-home">Home</Link></button>
 
             {
                 current ? <button class="btn waves-effect waves-light" onClick={(e) => getDeparted(e)}>Prior Employee Shifts</button> :

@@ -17,7 +17,6 @@ const Login = () => {
 
         await axios.post("http://localhost:3000/login", { email, password })
             .then((response) => {
-                console.log(response)
                 const data = response.data;
                 dispatch({
                     type: actionTypes.LOGIN,

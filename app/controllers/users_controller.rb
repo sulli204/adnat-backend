@@ -44,7 +44,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:user_id])
         if @user.update_attribute(:organization_id, nil)
             @shifts = Shift.where(user_id: @user.id)
-
             @shifts.update_all(departed: true)
         end
     end

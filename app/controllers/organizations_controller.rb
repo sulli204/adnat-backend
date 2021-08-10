@@ -33,11 +33,13 @@ class OrganizationsController < ApplicationController
     end
 
     def create
-        @organization = Organization.new(org_params)
-        if @organization.save
-            render json: @organization
-        else
-            render :new
+        begin
+            @organization = Organization.new(org_params)
+            if @organization.save!
+                render json: @organization
+            end
+        rescue ActiveRecord::RecordInvalid
+            render json: {e_messages: @organization.errors.full_messages}, status: 422
         end
     end
 

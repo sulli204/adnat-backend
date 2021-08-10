@@ -13,7 +13,7 @@ const OrganizationList = () => {
             .then((response) => {
                 setOrganizations(response.data);
             })
-    }, [userState.id]);
+    }, []);
 
     return (
         <div>
