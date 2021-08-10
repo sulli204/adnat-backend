@@ -6,14 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Organization.delete_all
-
 Organization.create(name: "Bob's Burgers", hourly: 15.00)
 Organization.create(name: "The Big Donut", hourly: 12.50)
 Organization.create(name: "Red Seven", hourly: 17.75)
 Organization.create(name: "Von's Records", hourly: 11.25)
-
-User.delete_all
 
 User.create(name: "Nate Stern", email: "stern97@gmail.com", password: "nathanrules", password_confirmation: "nathanrules", organization_id: 1)
 User.create(name: "Finn the Human", email: "finn11@gmail.com", password: "jakethedog", password_confirmation: "jakethedog", organization_id: 1)
