@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import actionTypes from './context/ActionTypes';
 import UserContext from './context/UserContext';
@@ -7,9 +7,23 @@ import UserContext from './context/UserContext';
 const Navbar = () => {
     const [userState, dispatch] = useContext(UserContext);
     const history = useHistory();
+    console.log(userState)
+
+    useEffect(() => {
+        // if (localStorage.getItem("id") != null) {
+        //     dispatch({
+        //         action: actionTypes.LOGIN,
+        //         payload: {
+        //             id: localStorage.getItem("id"),
+        //             name: localStorage.getItem("name"),
+        //             email: localStorage.getItem("email"),
+        //             organization_id: localStorage.getItem("organization_id")
+        //         }
+        //     })
+        // }
+    }, [])
 
     let navbar;
-    console.log(userState)
 
     const logout = async (e) => {
         e.preventDefault();
@@ -19,6 +33,7 @@ const Navbar = () => {
                 dispatch({
                     type: actionTypes.LOGOUT
                 })
+                localStorage.removeItem("user");
                 if (response.status === 200) {
                     history.push("/");
                 }

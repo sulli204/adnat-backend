@@ -16,4 +16,5 @@ module ShiftsHelper
         end
         return @beautified_shifts
     end
+
 end

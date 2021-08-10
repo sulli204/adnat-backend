@@ -34,11 +34,16 @@ class ShiftsController < ApplicationController
         finish_time = DateTime.strptime(params[:shift][:finish], '%Y-%m-%d %H:%M')
         
         @organization = Organization.find(params[:organization_id])
+        
+        if (finish_time - start_time < 0)
+            finish_time = finish_time + 1
+        end
+
         @shift.start = start_time
         @shift.finish = finish_time
         @shift.organization_id = params[:organization_id]
 
-        if @shift.save
+        if @shift.save!
             @beautified_shift = {
                                     "name" => User.find(@shift.user_id).name, 
                                     "date" => @shift.start.to_date,

@@ -21,6 +21,7 @@ const ShiftList = (props) => {
 
     const addShift = async (e) => {
         e.preventDefault();
+        
         let shift = {
             start: date + " " + start,
             finish: date + " " + finish,
@@ -79,19 +80,19 @@ const ShiftList = (props) => {
                             </tr>
                         );
                     })}
-                    { current ?
-                    <tr>
-                        <td>{userState.name}</td>
-                        <td><input type="date" value={date} onChange={(e) => { setDate(e.target.value) }} /></td>
-                        <td><input type="time" value={start} onChange={(e) => { setStart(e.target.value) }} /></td>
-                        <td><input type="time" value={finish} onChange={(e) => { setFinish(e.target.value) }} /></td>
-                        <td><input type="number" min="0" value={breakTime} onChange={(e) => { setBreakTime(e.target.value) }} /></td>
-                        <td>
-                            <button class="btn-floating btn-medium waves-effect waves-light red" onClick={addShift}>
-                                <i class="material-icons">add</i>
-                            </button>
-                        </td>
-                    </tr> : null }
+                    {current ?
+                        <tr>
+                            <td>{userState.name}</td>
+                            <td><input type="date" value={date} onChange={(e) => { setDate(e.target.value) }} /></td>
+                            <td><input type="time" value={start} onChange={(e) => { setStart(e.target.value) }} /></td>
+                            <td><input type="time" value={finish} onChange={(e) => { setFinish(e.target.value) }} /></td>
+                            <td><input type="number" min="0" value={breakTime} onChange={(e) => { setBreakTime(e.target.value) }} /></td>
+                            <td>
+                                <button class="btn-floating btn-medium waves-effect waves-light red" onClick={addShift}>
+                                    <i class="material-icons">add</i>
+                                </button>
+                            </td>
+                        </tr> : null}
                 </tbody>
             </table>
             <button class="btn waves-effect waves-light white"><Link to="/organization-home">Go Back</Link></button>

@@ -20,7 +20,7 @@ const reducer = (state, action) => {
                 id: action.payload.id,
                 name: action.payload.name,
                 email: action.payload.email,
-                organization_id: action.payload.organization_id
+                organization_id: action.payload.organization_id,
             };
 
         case actionTypes.JOIN:
