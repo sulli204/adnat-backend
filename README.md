@@ -8,7 +8,7 @@ All you need to do to get started is:
 
 *Change into adnat-backend
 
-*Run setup.sh to install all gems, migrate and seed database, and install all npm packages
+*Run `./setup.sh` to install all gems, migrate and seed database, and install all npm packages
 
 *Run `rails s` on one terminal
 
