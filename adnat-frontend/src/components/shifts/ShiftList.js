@@ -3,6 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Shift from './Shift'
 
+/* Displays beautified shifts sent from rails backend
+   Allows user to add a new shift
+   Displays shifts from former employees
+*/
+
 const ShiftList = (props) => {
     const userState = props.location.state.userState;
     const [shifts, setShifts] = useState([]);
