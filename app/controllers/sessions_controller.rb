@@ -18,8 +18,8 @@ class SessionsController < ApplicationController
 
     # Invoked on logout
 
-    def destroy  
+    def destroy
         session[:user_id] = nil
-        redirect_to '/login'
+        render json: {}, status: 200
     end
 end
