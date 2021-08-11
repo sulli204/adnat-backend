@@ -62,6 +62,8 @@ const reducer = (state, action) => {
             }
 
         case actionTypes.UPDATE:
+            localStorage.setItem('name', action.payload.name);
+            localStorage.setItem('email', action.payload.email);
             return {
                 ...state,
                 name: action.payload.name,
