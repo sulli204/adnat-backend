@@ -1,4 +1,10 @@
 class OrganizationsController < ApplicationController
+    # Organization controller
+    # Holds all methods pertaining to creating, destroying,
+    # maintaining, updating, and showing organization attributes
+    
+    # Join and Leave organizations are defined in User Controller
+
     def new
         @organization = Organization.new
     end
@@ -21,10 +27,10 @@ class OrganizationsController < ApplicationController
         @organization = Organization.find(params[:id])
         @user = User.find(params[:user_id])
         if @organization.update(org_params)
-            if @user.organization_id == nil
+            if @user.organization_id == nil  # User will be given list of orgs to join
                 @organizations = Organization.all
                 render json: @organizations
-            else
+            else                             # User will be given their org
                 render json: @organization
             end
         else 

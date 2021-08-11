@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+    # Users controller
+    # Holds all methods pertaining to creating, destroying,
+    # maintaining, updating, and showing user attributes
+
     def new
     end
 
@@ -10,7 +14,7 @@ class UsersController < ApplicationController
                         organization_id: nil
         )
 
-        if @user.save!
+        if @user.save!                   # Logs in user on signup
             session[:user_id] = @user.id
             render json: @user
         else
@@ -29,6 +33,8 @@ class UsersController < ApplicationController
         end
     end
 
+    # Updates user organization_id with desired organization
+
     def join
         @user = User.find(params[:user_id])
         @organization = Organization.find(params[:org_id])
@@ -40,6 +46,8 @@ class UsersController < ApplicationController
         end
     end
 
+    # Updates user organization_id with null state
+
     def leave
         @user = User.find(params[:user_id])
         if @user.update_attribute(:organization_id, nil)
@@ -48,6 +56,8 @@ class UsersController < ApplicationController
         end
     end
     
+    # Handles password changing with BCrypt gem
+
     def change_password
         begin
             @user = User.find_by(email: params[:email])
@@ -61,7 +71,7 @@ class UsersController < ApplicationController
                     end
                 end
             end
-        rescue ActiveRecord::RecordNotFound
+        rescue ActiveRecord::RecordNotFound     # Incase email provided doesn't exist
             render json: {}, status: 404
         end
 

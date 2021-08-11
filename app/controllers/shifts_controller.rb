@@ -1,14 +1,20 @@
 class ShiftsController < ApplicationController
+    # Shifts controller
+    # Holds all methods pertaining to creating, destroying,
+    # maintaining, updating, and showing shift attributes
+
     def new
         @shift = Shift.new
     end
+
+    # Shows a single organization's current employees' shifts
 
     def index
         @shifts = Shift.joins(:user).where(organization_id: params[:organization_id]).order('start DESC')
         @shifts = @shifts.where("departed = false")
         @organization = Organization.find(params[:organization_id])
         if @shifts
-            @beautified_shifts = helpers.beautify_shifts(@shifts, @organization.hourly)           
+            @beautified_shifts = helpers.beautify_shifts(@shifts, @organization.hourly)                   
         end
         render json: @beautified_shifts
     end
@@ -16,6 +22,8 @@ class ShiftsController < ApplicationController
     def show
         
     end
+
+    # Shows a single organization's former employees' shifts
 
     def get_departed
         @shifts = Shift.joins(:user).where(organization_id: params[:organization_id]).order('start DESC')
@@ -39,8 +47,8 @@ class ShiftsController < ApplicationController
             
             @organization = Organization.find(params[:organization_id])
             
-            if (finish_time - start_time < 0)
-                finish_time = finish_time + 1
+            if (finish_time - start_time < 0)  # Overnight shift case 
+                finish_time = finish_time + 1  # Increase finish_time's date by a day
             end
 
             @shift.start = start_time
@@ -48,17 +56,10 @@ class ShiftsController < ApplicationController
             @shift.organization_id = params[:organization_id]
 
             if @shift.save!
-                @beautified_shift = {
-                                        "name" => User.find(@shift.user_id).name, 
-                                        "date" => @shift.start.to_date,
-                                        "start" => @shift.start.to_time.strftime("%I:%M%p").to_s,
-                                        "finish" => @shift.finish.to_time.strftime("%I:%M%p").to_s,
-                                        "break" => @shift.break,
-                                        "hours" => number_with_precision(((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600), precision: 1),
-                                        "shift_cost" => number_to_currency((((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600) * @organization.hourly))
-                                        }
+                @beautified_shift = helpers.beautify_shifts([@shift], @organization.hourly)
                 render json: @beautified_shift
             end
+
         rescue ActiveRecord::RecordInvalid
             render json: {e_messages: @shift.errors.full_messages}, status: 422
         end
