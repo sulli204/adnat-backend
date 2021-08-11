@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Be sure you have the rails CLI installed
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+All you need to do to get started is:
+*Clone this repo
+*Change into adnat-backend
+*Run setup.sh to install all gems, migrate and seed database, and install all npm packages
+*Run `rails s` on one terminal
+*Open another terminal and change directory into adnat-backend/adnat-frontend
+*Run `npm start client`
