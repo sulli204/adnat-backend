@@ -23,7 +23,7 @@ const Navbar = () => {
     }, [])
 
     let navbar;
-
+    console.log(userState)
     const logout = async (e) => {
         e.preventDefault();
 
@@ -40,7 +40,7 @@ const Navbar = () => {
             
     }
 
-    if (userState.id == null) {
+    if (userState.id === null) {
         navbar =(
             <nav>
                 <div class="nav-wrapper">

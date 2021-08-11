@@ -7,7 +7,7 @@ import { Redirect } from 'react-router';
 const CreateOrganization = () => {
     const [userState, dispatch] = useContext(UserContext);
     const [orgName, setOrgName] = useState("");
-    const [hourly, setHourly] = useState("");
+    const [hourly, setHourly] = useState("0");
     const [redirect, setRedirect] = useState(false);
 
     const handleSubmit = async (e) => {

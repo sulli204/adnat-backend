@@ -54,8 +54,8 @@ class ShiftsController < ApplicationController
                                         "start" => @shift.start.to_time.strftime("%I:%M%p").to_s,
                                         "finish" => @shift.finish.to_time.strftime("%I:%M%p").to_s,
                                         "break" => @shift.break,
-                                        "hours" => ((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600),
-                                        "shift_cost" => (((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600) * @organization.hourly)
+                                        "hours" => number_with_precision(((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600), precision: 1),
+                                        "shift_cost" => number_to_currency((((@shift.finish.to_time - @shift.start.to_time - (@shift.break * 60.0)) / 3600) * @organization.hourly))
                                         }
                 render json: @beautified_shift
             end

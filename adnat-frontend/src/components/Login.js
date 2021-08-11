@@ -18,6 +18,7 @@ const Login = () => {
         await axios.post("http://localhost:3000/login", { email, password })
             .then((response) => {
                 const data = response.data;
+                console.log(data)
                 dispatch({
                     type: actionTypes.LOGIN,
                     payload: {
@@ -27,10 +28,6 @@ const Login = () => {
                         organization_id: data.organization_id
                     }
                 });
-                localStorage.setItem('name', response.data.name);
-                localStorage.setItem('id', response.data.id);
-                localStorage.setItem('email', response.data.email);
-                localStorage.setItem('organization_id', response.data.organization_id);
                 setRedirerct(true);
             })
             .catch(error => {

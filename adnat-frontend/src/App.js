@@ -8,7 +8,6 @@ import Landing from './components/Landing';
 import SignUp from './components/SignUp';
 
 import UserContext from './components/context/UserContext';
-import userState from './components/context/UserState';
 import reducer from './components/context/UserReducer';
 import { useReducer } from 'react';
 import OrganizationHome from './components/organizations/OrganizationHome';
@@ -16,7 +15,24 @@ import ShiftList from './components/shifts/ShiftList';
 import Profile from './components/Profile';
 import ChangePassword from './components/ChangePassword';
 
+
 function App() {
+    let userState = {
+        id: null,
+        name: "",
+        email: "",
+        organization_id: null
+    }
+
+    if (localStorage.getItem("isLoggedIn") === 'true'){
+        userState = {
+            id: localStorage.getItem('id'),
+            name: localStorage.getItem('name'),
+            organization_id: localStorage.getItem('organization_id'),
+            email: localStorage.getItem('email')
+        }
+    }
+
     return (
         <BrowserRouter>
             <UserContext.Provider value={useReducer(reducer, userState)}>

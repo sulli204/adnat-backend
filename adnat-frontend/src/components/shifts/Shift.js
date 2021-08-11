@@ -9,7 +9,7 @@ const Shift = ({shift}) => {
             <td>{shift.finish}</td>
             <td>{shift.break}</td>
             <td>{shift.hours}</td>
-            <td>${shift.shift_cost}</td>
+            <td>{shift.shift_cost}</td>
         </>
     )
 }

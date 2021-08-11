@@ -14,7 +14,7 @@ const ChangePassword = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password === password_confirmation) {
+        if (password === password_confirmation && password.length >= 6) {
             await axios.patch("http://localhost:3000/forgot_password", { email, password, password_confirmation })
                 .then((response) => {
                     if (response.status === 200) {
@@ -34,6 +34,12 @@ const ChangePassword = () => {
                         setPasswordConfirmation("");
                     }
                 })
+        }
+        else if (password.length < 6) {
+            alert("Make sure password is at least 6 characters!");
+            setPassword("");
+            setPasswordConfirmation("");
+
         } else {
             alert("Make sure passwords match!");
             setPassword("");
