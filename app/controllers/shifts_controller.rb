@@ -72,6 +72,13 @@ class ShiftsController < ApplicationController
         end
     end
 
+    def destroy
+        @shift = Shift.find(params[:id])
+        if @shift.destroy
+            render json: {}, status: 200
+        end
+    end
+
     private
     def shift_params
         params.require(:shift).permit(:start, :finish, :break, :user_id)
