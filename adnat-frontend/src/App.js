@@ -14,6 +14,7 @@ import OrganizationHome from './components/organizations/OrganizationHome';
 import ShiftList from './components/shifts/ShiftList';
 import Profile from './components/Profile';
 import ChangePassword from './components/ChangePassword';
+import ShiftEdit from './components/shifts/ShiftEdit';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
                         <Route exact path="/shifts" component={ShiftList} />
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/change-password" component={ChangePassword}/>
+                        <Route exact path="/edit-shift" component={ShiftEdit} />
                     </div>
                 </div>
             </UserContext.Provider>

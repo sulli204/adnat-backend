@@ -1,4 +1,5 @@
 import React from 'react';
+import ShiftEdit from './ShiftEdit';
 
 const Shift = ({shift}) => {
     return (

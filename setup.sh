@@ -5,7 +5,4 @@ rails db:seed
 
 cd adnat-frontend
 npm install
-
-npm start client &
-cd ..
-rails s
+npm run build

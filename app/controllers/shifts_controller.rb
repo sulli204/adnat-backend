@@ -65,6 +65,13 @@ class ShiftsController < ApplicationController
         end
     end
 
+    def update
+        @shift = Shift.find(params[:id])
+        if @shift.update(shift_params)
+            render json: @shift
+        end
+    end
+
     private
     def shift_params
         params.require(:shift).permit(:start, :finish, :break, :user_id)

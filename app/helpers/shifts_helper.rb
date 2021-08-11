@@ -15,7 +15,8 @@ module ShiftsHelper
                     "finish" => shift.finish.to_time.strftime("%I:%M%p").to_s,
                     "break" => shift.break,
                     "hours" => number_with_precision(((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600), precision: 1),
-                    "shift_cost" => number_to_currency((((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600) * hourly))
+                    "shift_cost" => number_to_currency((((shift.finish.to_time - shift.start.to_time - (shift.break * 60.0)) / 3600) * hourly)),
+                    "id" => shift.id
                 }
                 i = i + 1
             end

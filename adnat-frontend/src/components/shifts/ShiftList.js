@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import UserContext from '../context/UserContext';
 import Shift from './Shift'
 
 /* Displays beautified shifts sent from rails backend
@@ -9,13 +10,14 @@ import Shift from './Shift'
 */
 
 const ShiftList = (props) => {
-    const userState = props.location.state.userState;
+    const [userState, dispatch] = useContext(UserContext);
     const [shifts, setShifts] = useState([]);
     const [date, setDate] = useState("");
     const [start, setStart] = useState("");
     const [finish, setFinish] = useState("");
     const [breakTime, setBreakTime] = useState("0");
     const [current, setCurrent] = useState(true);
+    const history = useHistory();
 
     useEffect(() => {
         axios.get("http://localhost:3000/users/" + userState.id + "/organizations/" + userState.organization_id + "/shifts")
@@ -26,7 +28,7 @@ const ShiftList = (props) => {
 
     const addShift = async (e) => {
         e.preventDefault();
-        
+
         let shift = {
             start: date + " " + start,
             finish: date + " " + finish,
@@ -46,11 +48,11 @@ const ShiftList = (props) => {
                 setBreakTime("")
             }
         })
-        .catch((error) => {
-            if (error.response.status === 422){
-                alert("Date and times must be present");
-            }
-        })
+            .catch((error) => {
+                if (error.response.status === 422) {
+                    alert("Date and times must be present");
+                }
+            })
     }
 
     const getDeparted = async (e) => {
@@ -72,6 +74,17 @@ const ShiftList = (props) => {
             });
     }
 
+    const editShift = (shift, user_id) => {
+        console.log(shift)
+            history.push({
+                pathname: "/edit-shift",
+                state: {
+                    shift,
+                    user_id
+                }
+            });
+    }
+
     return (
         <div>
             {current ? <h4>Current Shifts</h4> : <h4>Departed Employees' Shifts</h4>}
@@ -87,9 +100,9 @@ const ShiftList = (props) => {
                 </thead>
 
                 <tbody>
-                    {shifts.map(shift => {
+                    {shifts.map((shift) => {
                         return (
-                            <tr>
+                            <tr onClick={(e) => {editShift(shift)}}>
                                 <Shift shift={shift} />
                             </tr>
                         );
