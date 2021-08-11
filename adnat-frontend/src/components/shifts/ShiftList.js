@@ -37,7 +37,7 @@ const ShiftList = (props) => {
             { shift }
         ).then((response) => {
             if (response.status === 200) {
-                let newShift = response.data;
+                let newShift = response.data[0];
                 let updatedArray = shifts.concat(newShift);
                 setShifts(updatedArray);
                 setDate("")
