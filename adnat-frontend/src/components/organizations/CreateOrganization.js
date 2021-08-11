@@ -4,6 +4,10 @@ import UserContext from '../context/UserContext';
 import actionTypes from '../context/ActionTypes';
 import { Redirect } from 'react-router';
 
+/* User can create and join an Organization.
+   User will be redirected to their OrganizationHome
+*/
+
 const CreateOrganization = () => {
     const [userState, dispatch] = useContext(UserContext);
     const [orgName, setOrgName] = useState("");

@@ -4,6 +4,8 @@ import actionTypes from './context/ActionTypes';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+// Profile allows you to review and change name, email or password
+
 const Profile = () => {
     const [userState, dispatch] = useContext(UserContext);
     const [name, setName] = useState(userState.name);

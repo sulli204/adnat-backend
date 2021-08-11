@@ -5,6 +5,10 @@ import actionTypes from '../context/ActionTypes';
 import { useHistory, Link } from 'react-router-dom';
 import OrganizationEdit from './OrganizationEdit';
 
+/* Shows Organization options to user
+   Redirects to ShiftList, Leave Organization, and Edit
+*/
+
 const OrganizationHome = () => {
     const [org, setOrganization] = useState("");
     const [userState, dispatch] = useContext(UserContext);

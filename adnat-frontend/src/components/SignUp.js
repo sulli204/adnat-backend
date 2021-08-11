@@ -4,6 +4,10 @@ import UserContext from './context/UserContext';
 import actionTypes from './context/ActionTypes';
 import { Redirect } from 'react-router';
 
+/* SignUp is used in Login.js
+   Backend logs in user on successful creation and should redirect to
+   OrganizationList.js
+*/
 const SignUp = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

@@ -5,6 +5,10 @@ import axios from 'axios';
 import UserContext from '../context/UserContext';
 import actionTypes from '../context/ActionTypes';
 
+/* Displays Organization name and hourly rate
+ Gives options to either join or edit organization
+*/
+
 const Organization = (org) => {
     const [userState, dispatch] = useContext(UserContext)
     const [organization, setOrganization] = useState(org)

@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import UserContext from './context/UserContext';
 import OrganizationList from './organizations/OrganizationList';
 
+// Determines whether a user should be directed to OrganizationList or Organization
 
 const Landing = () => {
     const [userState, dispatch] = useContext(UserContext);

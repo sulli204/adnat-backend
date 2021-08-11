@@ -5,6 +5,9 @@ import actionTypes from './context/ActionTypes';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
+// Landing page for application
+// Redirects to Landing.js
+
 const Login = () => {
 
     let [email, setEmail] = useState('');

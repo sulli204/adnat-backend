@@ -3,6 +3,12 @@ import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import axios from 'axios';
 
+/* Modal window that opens and displays Organization contents
+Allows user to edit and save Organization fields
+Known bugs:
+    1.) If user edits an organization they are apart of,
+    View Shifts button is visible through the modal window
+*/
 class OrganizationEdit extends React.Component {
     constructor(props) {
         super(props);

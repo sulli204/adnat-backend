@@ -1,5 +1,9 @@
 import actionTypes from "./ActionTypes";
 
+/* Keeps track of userState through out all of application
+   Info is persisted in localStorage
+*/
+
 const reducer = (state, action) => {
     switch (action.type) {
 

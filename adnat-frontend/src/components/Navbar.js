@@ -4,23 +4,14 @@ import { Link, useHistory } from 'react-router-dom';
 import actionTypes from './context/ActionTypes';
 import UserContext from './context/UserContext';
 
+/* Navbar that is present on all pages
+   Adnat on left side takes you back to OrganizationList or
+   Organization. User name takes you to Profile
+   Logout takes you back to Login
+*/
 const Navbar = () => {
     const [userState, dispatch] = useContext(UserContext);
     const history = useHistory();
-
-    useEffect(() => {
-        // if (localStorage.getItem("id") != null) {
-        //     dispatch({
-        //         action: actionTypes.LOGIN,
-        //         payload: {
-        //             id: localStorage.getItem("id"),
-        //             name: localStorage.getItem("name"),
-        //             email: localStorage.getItem("email"),
-        //             organization_id: localStorage.getItem("organization_id")
-        //         }
-        //     })
-        // }
-    }, [])
 
     let navbar;
     console.log(userState)

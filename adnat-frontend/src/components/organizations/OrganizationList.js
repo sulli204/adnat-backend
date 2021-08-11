@@ -4,6 +4,10 @@ import UserContext from '../context/UserContext'
 import { Link } from 'react-router-dom'
 import Organization from './Organization';
 
+/* Shows up on initial signup or if user does not belong to an
+organization.
+*/
+
 const OrganizationList = () => {
     const [userState, dispatch] = useContext(UserContext);
     const [organizations, setOrganizations] = useState([]);

@@ -3,9 +3,10 @@ import { React, useContext, useState } from "react";
 import { useHistory } from "react-router";
 import UserContext from "./context/UserContext";
 
+// ChangePassword component used in Profile.js and Login.js
+
 const ChangePassword = () => {
     const [userState, dispatch] = useContext(UserContext);
-
     const [email, setEmail] = useState(userState.email);
     const [password, setPassword] = useState("");
     const [password_confirmation, setPasswordConfirmation] = useState("");
