@@ -20,28 +20,41 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!samePassword()){
+        if (!samePassword()) {
             return;
         }
 
-        await axios.post('http://localhost:3000/users', {name, email, password, password_confirmation})
-        .then((response) => {
-            const data = response.data;
+        await axios.post('http://localhost:3000/users', { name, email, password, password_confirmation })
+            .then((response) => {
+                if (response.status === 200) {
+                    const data = response.data;
 
-            dispatch({
-                type: actionTypes.LOGIN,
-                payload: {
-                    id: data.id,
-                    name: data.name,
-                    email: data.email,
-                    organization_id: data.organization_id
+                    dispatch({
+                        type: actionTypes.LOGIN,
+                        payload: {
+                            id: data.id,
+                            name: data.name,
+                            email: data.email,
+                            organization_id: data.organization_id
+                        }
+                    })
+                    setRedirect(true);
                 }
             })
-        })
-        .then(() => setRedirect(true));
+            .catch((error) => {
+                console.log(error.response)
+                if(error.response.status === 422) {
+                    alert(error.response.data.e_messages);
+                    setName("");
+                    setEmail("");
+                    setPassword("");
+                    setPasswordConfirmation("");
+                }
+            })
+
     }
 
-    const samePassword = () =>{
+    const samePassword = () => {
         if (password !== password_confirmation) {
             setError("* Passwords need to match")
             setPasswordConfirmation("");
@@ -51,7 +64,7 @@ const SignUp = () => {
     }
 
     if (redirect) {
-        return <Redirect to="/landing"/>;
+        return <Redirect to="/landing" />;
     }
 
     return (

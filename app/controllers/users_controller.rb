@@ -14,11 +14,14 @@ class UsersController < ApplicationController
                         organization_id: nil
         )
 
-        if @user.save!                   # Logs in user on signup
-            session[:user_id] = @user.id
-            render json: @user
-        else
-            render json: {}, status: 422
+        begin
+
+            if @user.save!                   # Logs in user on signup
+                session[:user_id] = @user.id
+                render json: @user
+            end
+        rescue ActiveRecord::RecordInvalid
+            render json: {e_messages: @user.errors.full_messages}, status: 422
         end
     end
 
