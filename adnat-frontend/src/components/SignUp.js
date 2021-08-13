@@ -82,7 +82,7 @@ const SignUp = () => {
                     </div>
                     <div class="row">
                         <input type="password" name="password" id="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                        <label for="password">Password</label>
+                        <label for="password">Password (at least 6 characters)</label>
                     </div>
                     <div class="row">
                         <div class="red-text">{error}</div>
